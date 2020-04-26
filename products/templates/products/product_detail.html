@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                {% if product.image %}
+                    <img src={{ product.image.url }} class="card-img"
+                         alt={{ product.name }}>
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <strong class="text-primary mb-2">
+                        {{ product.get_school_type_display }}
+                    </strong>
+                    <h5 class="card-title">{{ product.name|title }}</h5>
+                    <p class="card-text text-muted">{{ product.price }} €</p>
+                    <p class="card-text">{{ product.description }}</p>
+                    <h10>Categories:</h10>
+                    {% for category in product.categories.all %}
+                        <span class="badge badge-success">
+                            {{ category.name }}
+                        </span>
+                    {% endfor %}
+                    <div class="d-flex m-3 justify-content-start align-items-center">
+                        <h5>{{ product.company.name|capfirst }}</h5>
+                        {% if product.company.logo %}
+                            <img style="height: 3rem;"
+                                 src={{ product.company.logo.url }} alt="logo"
+                                 class="img-thumbnail float-right ml-2">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
