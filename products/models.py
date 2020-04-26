@@ -49,6 +49,9 @@ class Product(models.Model):
     price = models.FloatField()
     publishing_end_date = models.DateTimeField()
 
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         """Return the model as a string."""
 
