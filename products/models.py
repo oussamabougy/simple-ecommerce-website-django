@@ -27,3 +27,29 @@ class Category(models.Model):
         """Return the model as a string."""
 
         return self.name
+
+
+class Product(models.Model):
+    """Represents a product inside our system."""
+
+    SCHOOL_TYPE = [
+        ('PR', 'praktijkonderwijs'),
+        ('VM', 'vmbo'),
+        ('MB', 'mbo'),
+        ('HB', 'hbo'),
+        ('OP', 'opleidingsbedrijf'),
+    ]
+
+    name = models.CharField(max_length=120)
+    image = models.ImageField(upload_to='product_images/', null=True)
+    description = models.TextField()
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Category)
+    school_type = models.CharField(max_length=2, choices=SCHOOL_TYPE)
+    price = models.FloatField()
+    publishing_end_date = models.DateTimeField()
+
+    def __str__(self):
+        """Return the model as a string."""
+
+        return self.name
