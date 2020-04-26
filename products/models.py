@@ -14,3 +14,16 @@ class Company(models.Model):
     def __str__(self):
         """Return the model as a string."""
         return self.name
+
+
+class Category(models.Model):
+    """Represents a category inside our system."""
+    name = models.CharField(max_length=120)
+
+    class Meta:
+        verbose_name_plural = 'categories'
+
+    def __str__(self):
+        """Return the model as a string."""
+
+        return self.name
